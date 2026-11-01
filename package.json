@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "node server.mjs",
     "check": "node scripts/check.mjs",
-    "cloudflare:login": "wrangler login",
+    "cloudflare:login": "wrangler login --scopes account:read user:read pages:write --use-keyring",
     "cloudflare:status": "wrangler whoami",
     "deploy:setup": "node scripts/deploy.mjs setup",
     "deploy": "node scripts/deploy.mjs production",
