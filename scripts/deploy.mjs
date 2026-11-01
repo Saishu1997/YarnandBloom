@@ -8,7 +8,7 @@ if(!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(config.projectName)||!config.productionBra
 const command=process.argv[2]||'production';
 const cli=path.join(root,'node_modules','wrangler','bin','wrangler.js');
 let args;
-if(command==='setup')args=['pages','project','create',config.projectName,'--production-branch',config.productionBranch];
+if(command==='setup')args=['pages','project','create',config.projectName,'--force','--production-branch',config.productionBranch];
 else if(command==='production'||command==='preview'){
   const check=spawnSync(process.execPath,[path.join(root,'scripts','check.mjs')],{cwd:root,stdio:'inherit'});
   if(check.status!==0)process.exit(check.status||1);
