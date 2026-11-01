@@ -1,0 +1,7 @@
+// Lightweight colour controls; no 3D layers, animation loop, or drag handlers.
+const palette={pink:['#fba7ce','#da4c89','#8e1e55','#fa85b7'],green:['#cfdf9a','#829b50','#3a512b','#a9c277'],purple:['#d5c1ff','#9472d0','#4e326e','#bc9ce9']};
+document.querySelectorAll('[data-yarn]').forEach(button=>button.addEventListener('click',()=>{const colors=palette[button.dataset.yarn];['--yarn-light','--yarn-mid','--yarn-dark','--yarn-thread'].forEach((name,i)=>document.documentElement.style.setProperty(name,colors[i]));document.querySelectorAll('[data-yarn]').forEach(b=>{b.classList.toggle('selected',b===button);b.setAttribute('aria-pressed',String(b===button))})}));
+// Keep third-party Instagram scripts and frames off the initial page load.
+const instagramSection=document.querySelector('#instagram');
+function loadInstagram(){if(document.querySelector('#instagram-embed-script'))return;const script=document.createElement('script');script.id='instagram-embed-script';script.src='https://www.instagram.com/embed.js';script.async=true;document.body.append(script)}
+if(instagramSection){if('IntersectionObserver' in window){const observer=new IntersectionObserver(entries=>{if(entries.some(entry=>entry.isIntersecting)){observer.disconnect();loadInstagram()}},{rootMargin:'250px 0px'});observer.observe(instagramSection)}else{const button=document.createElement('button');button.className='text-link';button.textContent='Load Instagram posts';button.addEventListener('click',()=>{loadInstagram();button.remove()});instagramSection.append(button)}}

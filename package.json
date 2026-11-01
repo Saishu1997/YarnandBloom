@@ -1,0 +1,16 @@
+{
+  "name": "yarn-and-bloom",
+  "private": true,
+  "scripts": {
+    "dev": "node server.mjs",
+    "check": "node scripts/check.mjs",
+    "cloudflare:login": "wrangler login",
+    "cloudflare:status": "wrangler whoami",
+    "deploy:setup": "node scripts/deploy.mjs setup",
+    "deploy": "node scripts/deploy.mjs production",
+    "deploy:preview": "node scripts/deploy.mjs preview"
+  },
+  "devDependencies": {
+    "wrangler": "4.156.0"
+  }
+}
