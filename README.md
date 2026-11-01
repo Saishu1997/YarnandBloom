@@ -48,6 +48,19 @@ The workflow in `.github/workflows/publish.yml` checks pushes and pull requests.
 
 Never put tokens in the source code. Pull requests run validation only. The production environment can be configured with required reviewers in GitHub if desired.
 
+## Domain connection status
+
+The GoDaddy nameservers have been changed to `alec.ns.cloudflare.com` and `violet.ns.cloudflare.com`. Cloudflare is waiting for nameserver propagation. Until the Pages custom domain is attached, GitHub deployments update `https://yarnandbloom.pages.dev`, while `https://yarnandbloom.in` continues using the previous hosting.
+
+Once Cloudflare shows the domain as Active:
+
+1. Open https://dash.cloudflare.com/c299a5ba76ce9493792610ae7bfc2fa3/pages/view/yarnandbloom/domains
+2. Select **Set up a custom domain** and enter `yarnandbloom.in`.
+3. Accept replacing the existing website A records with the Pages CNAME to `yarnandbloom.pages.dev`. Preserve unrelated DNS records.
+4. Wait for the custom domain to show Active with HTTPS, then open https://yarnandbloom.in and verify the latest site.
+
+After that, every successful push to `main` updates the custom domain automatically.
+
 ## Connect the custom domain
 
 The existing public site stays on its current hosting until migration is completed. A Pages deployment alone does not update yarnandbloom.in. First verify the `pages.dev` deployment, then add `yarnandbloom.in` under the Pages project's Custom domains. Cloudflare requires the root domain to be a zone in the same Cloudflare account and its nameservers configured at the registrar. Copy all existing DNS records before any nameserver change. Keep the current site active until HTTPS and the new custom-domain routing are verified.
